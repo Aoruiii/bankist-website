@@ -22,9 +22,6 @@ const closeModal = function () {
   overlay.classList.add('hidden');
 };
 
-// for (let i = 0; i < btnsOpenModal.length; i++)
-//   btnsOpenModal[i].addEventListener('click', openModal);
-
 btnsOpenModal.forEach(btn => {
   btn.addEventListener('click', openModal);
 });
@@ -38,37 +35,78 @@ document.addEventListener('keydown', function (e) {
   }
 });
 
-btnScrollTo.addEventListener('click', function (e) {
+const scrollToSection = function (e) {
   // const s1Coords = section1.getBoundingClientRect();
   // console.log(s1Coords);
   // // window.pageXOffset, pageYOffset, document.documentElement.clientHeight, document.documentElement.clientWidth
 
-  // window.scrollTo(s1Coords.left, s1Coords.top + window.pageYOffset);
+  // window.scrollTo(s1Coords.left, s1Coords.top + window.scrollY);
 
   section1.scrollIntoView({
     behavior: 'smooth',
   });
-});
+};
 
+btnScrollTo.addEventListener('click', scrollToSection);
+
+const h1 = document.querySelector('h1');
+
+// const h1MouseEnter = function () {
+//   alert('mouse enter!');
+
+//   h1.removeEventListener('mouseenter', h1MouseEnter);
+// };
+
+// h1.addEventListener('mouseenter', h1MouseEnter);
+
+// Event Propagation
+
+// generate random background color
+// const randomInt = (min, max) =>
+//   Math.floor(Math.random() * (max - min + 1)) + min;
+
+// const randomColor = () =>
+//   `rgb(${randomInt(0, 255)},${randomInt(0, 255)},${randomInt(0, 255)})`;
+
+// document.querySelector('.nav__link').addEventListener('click', function (e) {
+//   this.style.backgroundColor = randomColor();
+//   console.log('LINK', e.target, e.currentTarget);
+// });
+
+// document.querySelector('.nav__links').addEventListener('click', function (e) {
+//   this.style.backgroundColor = randomColor();
+//   console.log('container', e.target, e.currentTarget);
+// });
+
+// document.querySelector('.nav').addEventListener(
+//   'click',
+//   function (e) {
+//     this.style.backgroundColor = randomColor();
+//     console.log('nav', e.target, e.currentTarget);
+//   },
+//   true
+// );
+
+/////////////////////////
 // Page navigation
 
-// creating dom object
+// // creating dom object
 
-const message = document.createElement('div');
-message.classList.add('cookie-message');
-message.innerHTML =
-  'We use cookie to improve functionnality. <button class="btn btn--close-cookie">Got it</button>';
+// const message = document.createElement('div');
+// message.classList.add('cookie-message');
+// message.innerHTML =
+//   'We use cookie to improve functionnality. <button class="btn btn--close-cookie">Got it</button>';
 
-// insert
+// // insert
 
-const header = document.querySelector('.header');
+// const header = document.querySelector('.header');
 
-header.append(message);
-message.style.width = '150%';
-message.style.backgroundColor = 'black';
+// header.append(message);
+// message.style.width = '150%';
+// message.style.backgroundColor = 'black';
 
-document
-  .querySelector('.btn--close-cookie')
-  .addEventListener('click', function () {
-    message.remove();
-  });
+// document
+//   .querySelector('.btn--close-cookie')
+//   .addEventListener('click', function () {
+//     message.remove();
+//   });
