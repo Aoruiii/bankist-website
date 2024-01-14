@@ -163,6 +163,49 @@ const headerObserver = new IntersectionObserver(navStick, navOptions);
 headerObserver.observe(header);
 
 //Reveal Sections
+const sections = document.querySelectorAll('.section');
+const revealSection = function (entries, observer) {
+  const [entry] = entries;
+  if (!entry.isIntersecting) return;
+
+  entry.target.classList.remove('section--hidden');
+  observer.unobserve(entry.target);
+};
+
+const sectionObserver = new IntersectionObserver(revealSection, {
+  root: null,
+  threshold: 0.2,
+});
+
+sections.forEach(function (section) {
+  section.classList.add('section--hidden');
+  sectionObserver.observe(section);
+});
+
+// Lazy loading images
+const imgTargets = document.querySelectorAll('img[data-src]');
+
+const imgLoading = function (entries, observer) {
+  const [entry] = entries;
+  if (!entry.isIntersecting) return;
+
+  const imgSrc = entry.target.getAttribute('data-src');
+  entry.target.setAttribute('src', imgSrc);
+
+  entry.target.addEventListener('load', function () {
+    entry.target.classList.remove('lazy-img');
+  });
+
+  observer.unobserve(entry.target);
+};
+
+const imgObserver = new IntersectionObserver(imgLoading, {
+  root: null,
+  threshold: 0,
+  rootMargin: '200px',
+});
+
+imgTargets.forEach(img => imgObserver.observe(img));
 
 // // creating dom object
 
