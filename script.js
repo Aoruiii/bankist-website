@@ -143,7 +143,8 @@ nav.addEventListener('mouseout', e => handleHover(e, 1));
 
 const header = document.querySelector('.header');
 const navHeight = nav.getBoundingClientRect().height;
-const obsCallback = function (entries, observer) {
+
+const navStick = function (entries, observer) {
   const [entry] = entries;
   if (entry.isIntersecting === false) {
     nav.classList.add('sticky');
@@ -152,14 +153,16 @@ const obsCallback = function (entries, observer) {
   }
 };
 
-const obsOptions = {
+const navOptions = {
   root: null,
   threshold: 0,
   rootMargin: `-${navHeight}px`,
 };
 
-const observer = new IntersectionObserver(obsCallback, obsOptions);
-observer.observe(header);
+const headerObserver = new IntersectionObserver(navStick, navOptions);
+headerObserver.observe(header);
+
+//Reveal Sections
 
 // // creating dom object
 
