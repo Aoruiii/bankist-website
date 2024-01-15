@@ -290,6 +290,15 @@ dotContainer.addEventListener('click', function (e) {
   }
 });
 
+// lifecycle DOM event
+
+// before leave the site
+// window.addEventListener('beforeunload', function (e) {
+//   e.preventDefault();
+//   console.log(e);
+//   e.returnValue = '';
+// });
+
 // // creating dom object
 
 // const message = document.createElement('div');
